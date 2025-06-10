@@ -1,0 +1,57 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Random Meme Generator</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.4/babel.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const memeTemplates = [
+      { text: "When you go viral on TikTok but forget the sound... 😂", bgColor: "bg-yellow-200", emoji: "🤦‍♂️" },
+      { text: "POV: You spent 3 hours on a 15-sec TikTok and got 2 views... 💀", bgColor: "bg-red-200", emoji: "😅" },
+      { text: "Me trying to nail the dance trend but looking like this... 🕺", bgColor: "bg-blue-200", emoji: "🐥" },
+      { text: "When your FYP is all drama but you’re just here for cat vids... 😿", bgColor: "bg-purple-200", emoji: "🐾" },
+      { text: "Accidentally liked a post from 2019 while stalking... 🚨", bgColor: "bg-pink-200", emoji: "😳" }
+    ];
+
+    const MemeGenerator = () => {
+      const [meme, setMeme] = useState(memeTemplates[0]);
+
+      const generateMeme = () => {
+        const randomIndex = Math.floor(Math.random() * memeTemplates.length);
+        setMeme(memeTemplates[randomIndex]);
+      };
+
+      return (
+        <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-md w-full">
+          <h1 className="text-2xl font-bold text-gray-800 mb-4">TikTok Meme Generator</h1>
+          <div className={`${meme.bgColor} p-4 rounded-md mb-4`}>
+            <p className="text-lg font-semibold text-gray-800">{meme.text}</p>
+            <span className="text-4xl">{meme.emoji}</span>
+          </div>
+          <button
+            onClick={generateMeme}
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+          >
+            New Meme!
+          </button>
+          <p className="text-sm text-gray-600 mt-4">Tap 'New Meme!' for a laugh, record, and share on TikTok! #MemeGenix</p>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<MemeGenerator />);
+  </script>
+</body>
+</html>
+```
